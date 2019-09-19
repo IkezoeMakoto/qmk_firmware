@@ -51,15 +51,28 @@ enum macro_keycodes {
 #define KC_LVAD  RGB_VAD
 #define KC_LMOD  RGB_MOD
 
-// layer
-#define KC_LWR   LOWER
-#define KC_RAIS  RAISE
-// alias
+//////////////////
+// layer        //
+//////////////////
+#define KC_LWR   LT(_LOWER, KC_SPC) // hold: lower, tap: space
+#define KC_RAIS  LT(_RAISE, KC_ENT) // hold: raise, tap: enter
+// todo: toggle lsl layer
+#define KC_LSL  KC_XXXX
+
+//////////////////
+// alias        //
+//////////////////
 #define KC_RIGH  KC_RIGHT
-// combination
+
+//////////////////
+// combination  //
+//////////////////
 // hold: alt(option), tap: space
 #define KC_OPSP  ALT_T(KC_SPC)
 
+//////////////////
+// key map      //
+//////////////////
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_kc( \
   //,------------------------------.           ,-----------------------------.
@@ -72,31 +85,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                          OPSP,LGUI, LWR,   RAIS,RGUI, ENT \
                       //`--------------'  `--------------'
   ),
-
   [_RAISE] = LAYOUT_kc( \
   //,------------------------------.           ,-----------------------------.
-      ESC,   1,   2,   3,   4,   5,                6,   7,   8,   9,   0,XXXX,\
+      ESC,  F1,  F2,  F3,  F4,  F5,               F6,  F7,  F8,  F9, F10, DEL,\
+  //|----+----+----+----+----+----|            |----+----+----+----+----+----
+      TAB, F11, F12,XXXX,XXXX,XXXX,             XXXX,HOME,  UP, END,XXXX,XXXX,\
   //|----+----+----+----+----+----|            |----+----+----+----+----+----|
-      TAB,  F1,  F2,  F3,  F4,  F5,             XXXX,HOME,  UP, END, F11, F12,\
-  //|----+----+----+----+----+----|            |----+----+----+----+----+----|
-     LCTL,  F6,  F7,  F8,  F9, F10,             RSFT,LEFT,DOWN,RIGH,XXXX,RSFT,\
+     LCTL,LSFT,XXXX,XXXX,XXXX,LSFT,             RSFT,LEFT,DOWN,RIGH,XXXX,RSFT,\
   //|----+----+----+----+----+----+----|  |----+----+----+----+----+----+----|
-                         OPSP,LGUI,XXXX,   RAIS,RCMD, ENT \
+                         OPSP,LGUI, LSL,   RAIS,RCMD, ENT \
                       //`--------------'  `--------------'
   ),
-
   [_LOWER] = LAYOUT_kc( \
   //,------------------------------.           ,-----------------------------.
-      GRV,EXLM,  AT,HASH, DLR,PERC,             CIRC,AMPR,ASTR,LPRN,RPRN,MINS,\
+      ESC,   1,   2,   3,   4,   5,                6,   7,   8,   9,   0,MINS,\
   //|----+----+----+----+----+----|            |----+----+----+----+----+----|
-      TAB,XXXX,XXXX,XXXX,XXXX,XXXX,             XXXX,XXXX,XXXX,LBRC,RBRC,PLUS,\
+      TAB,XXXX,XXXX,XXXX,XXXX,XXXX,             XXXX,XXXX,XXXX,LBRC,RBRC, EQL,\
   //|----+----+----+----+----+----|            |----+----+----+----+----+----|
      LCTL,LSFT,XXXX,XXXX,XXXX,LSFT,             RSFT,XXXX,XXXX,XXXX,XXXX,BSLS,\
   //|----+----+----+----+----+----+----|  |----+----+----+----+----+----+----|
-                         OPSP,LGUI, LWR,   XXXX,RCMD, ENT \
+                         OPSP,LGUI, LWR,    LSL,RCMD, ENT \
                       //`--------------'  `--------------'
   ),
-
   [_ADJUST] = LAYOUT_kc( \
   //,------------------------------.           ,-----------------------------.
       RST,LRST,XXXX,XXXX,XXXX,XXXX,             XXXX,XXXX,XXXX,XXXX,XXXX,XXXX,\
@@ -110,6 +120,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
+//////////////////
+// logic        //
+//////////////////
 int RGB_current_mode;
 
 void persistent_default_layer_set(uint16_t default_layer) {
