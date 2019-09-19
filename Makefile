@@ -617,3 +617,9 @@ BUILD_DATE := NA
 endif
 
 include $(ROOT_DIR)/testlist.mk
+
+build:
+	$(MAKE) crkbd:zoe
+
+deploy:
+	$(MAKE) crkbd:zoe:avrdude
