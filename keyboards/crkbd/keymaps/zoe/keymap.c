@@ -40,8 +40,6 @@ enum macro_keycodes {
 
 #define KC______ KC_TRNS
 #define KC_XXXX  KC_NO
-#define KC_LWR   LOWER
-#define KC_RAIS  RAISE
 #define KC_RST   RESET
 #define KC_LRST  RGBRST
 #define KC_LTOG  RGB_TOG
@@ -52,64 +50,50 @@ enum macro_keycodes {
 #define KC_LVAI  RGB_VAI
 #define KC_LVAD  RGB_VAD
 #define KC_LMOD  RGB_MOD
-#define KC_GUEI  GUI_T(KC_LANG2)
-#define KC_ALKN  ALT_T(KC_LANG1)
-#define KC_RIGH  KC_RIGHT
 
-#define KC_C  KC_RIGHT
+// layer
+#define KC_LWR   LOWER
+#define KC_RAIS  RAISE
+// alias
+#define KC_RIGH  KC_RIGHT
+// combination
+// hold: alt(option), tap: space
+#define KC_OPSP  ALT_T(KC_SPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_kc( \
   //,------------------------------.           ,-----------------------------.
-      TAB,   Q,   W,   E,   R,   T,                Y,   U,   I,   O,   P,BSPC,\
+      ESC,   Q,   W,   E,   R,   T,                Y,   U,   I,   O,   P,BSPC,\
   //|----+----+----+----+----+----|            |----+----+----+----+----+----|
-     LCTL,   A,   S,   D,   F,   G,                H,   J,   K,   L,SCLN,QUOT,\
+      TAB,   A,   S,   D,   F,   G,                H,   J,   K,   L,SCLN,QUOT,\
   //|----+----+----+----+----+----|            |----+----+----+----+----+----|
-     LSFT,   Z,   X,   C,   V,   B,                N,   M,COMM, DOT,SLSH, ESC,\
+     LCTL,   Z,   X,   C,   V,   B,                N,   M,COMM, DOT,SLSH,RSFT,\
   //|----+----+----+----+----+----+----|  |----+----+----+----+----+----+----|
-                         GUEI, LWR, SPC,    ENT,RAIS,ALKN \
+                         OPSP,LGUI, LWR,   RAIS,RGUI, ENT \
                       //`--------------'  `--------------'
   ),
 
   [_RAISE] = LAYOUT_kc( \
-  // ,------------------------------.           ,-----------------------------.
-  // | \t |  1 |  2 |  3 |  4 |  5 |            |  6 |  7 |  8 |  9 |  0 | BS |
-  // |----+----+----+----+----+----|            |----+----+----+----+----+----|
-  // |LCTL| F1 | F2 | F3 | F4 | F5 |            |    |home|  ↑ | end|    |    |
-  // |----+----+----+----+----+----|            |----+----+----+----+----+----|
-  // |LSFT| F6 | F7 | F8 | F9 |F10 |            |    |  ← |  ↓ |  → |    |    |
-  // |----+----+----+----+----+----+----|  |----+----+----+----+----+----+----|
-  //                     |GUEI| LWR| SPC|  | \n |RAIS|ALKN|
-  //                     `--------------'  `--------------'
   //,------------------------------.           ,-----------------------------.
-      TAB,   1,   2,   3,   4,   5,                6,   7,   8,   9,   0,BSPC,\
+      ESC,   1,   2,   3,   4,   5,                6,   7,   8,   9,   0,XXXX,\
   //|----+----+----+----+----+----|            |----+----+----+----+----+----|
-     LCTL,  F1,  F2,  F3,  F4,  F5,             XXXX,HOME,  UP, END,XXXX,XXXX,\
+      TAB,  F1,  F2,  F3,  F4,  F5,             XXXX,HOME,  UP, END, F11, F12,\
   //|----+----+----+----+----+----|            |----+----+----+----+----+----|
-     LSFT,  F6,  F7,  F8,  F9, F10,             XXXX,LEFT,DOWN,RIGH,XXXX,XXXX,\
+     LCTL,  F6,  F7,  F8,  F9, F10,             RSFT,LEFT,DOWN,RIGH,XXXX,RSFT,\
   //|----+----+----+----+----+----+----|  |----+----+----+----+----+----+----|
-                         GUEI, LWR, SPC,    ENT,RAIS,ALKN \
+                         OPSP,LGUI,XXXX,   RAIS,RCMD, ENT \
                       //`--------------'  `--------------'
   ),
 
   [_LOWER] = LAYOUT_kc( \
-  // ,------------------------------.           ,-----------------------------.
-  // | \t |  ! |  @ |  # |  $ |  % |            |  ^ |  & |  * |  ( |  ) | BS |
-  // |----+----+----+----+----+----|            |----+----+----+----+----+----|
-  // |LCTL|    |    |    |    |    |            |  - |  = |  { |  } |  | |  ` |
-  // |----+----+----+----+----+----|            |----+----+----+----+----+----|
-  // |LSFT|    |    |    |    |    |            |  _ |  + |  [ |  ] |  \ |  ~ |
-  // |----+----+----+----+----+----+----|  |----+----+----+----+----+----+----|
-  //                     |GUEI| LWR| SPC|  | \n |RAIS|ALKN|
-  //                     `--------------'  `--------------'
   //,------------------------------.           ,-----------------------------.
-      TAB,EXLM,  AT,HASH, DLR,PERC,             CIRC,AMPR,ASTR,LPRN,RPRN,BSPC,\
+      GRV,EXLM,  AT,HASH, DLR,PERC,             CIRC,AMPR,ASTR,LPRN,RPRN,MINS,\
   //|----+----+----+----+----+----|            |----+----+----+----+----+----|
-     LCTL,XXXX,XXXX,XXXX,XXXX,XXXX,             MINS, EQL,LCBR,RCBR,PIPE, GRV,\
+      TAB,XXXX,XXXX,XXXX,XXXX,XXXX,             XXXX,XXXX,XXXX,LBRC,RBRC,PLUS,\
   //|----+----+----+----+----+----|            |----+----+----+----+----+----|
-     LSFT,XXXX,XXXX,XXXX,XXXX,XXXX,             UNDS,PLUS,LBRC,RBRC,BSLS,TILD,\
+     LCTL,LSFT,XXXX,XXXX,XXXX,LSFT,             RSFT,XXXX,XXXX,XXXX,XXXX,BSLS,\
   //|----+----+----+----+----+----+----|  |----+----+----+----+----+----+----|
-                         GUEI, LWR, SPC,    ENT,RAIS,ALKN \
+                         OPSP,LGUI, LWR,   XXXX,RCMD, ENT \
                       //`--------------'  `--------------'
   ),
 
@@ -121,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|            |----+----+----+----+----+----|
      LMOD,LHUD,LSAD,LVAD,XXXX,XXXX,             XXXX,XXXX,XXXX,XXXX,XXXX,XXXX,\
   //|----+----+----+----+----+----+----|  |----+----+----+----+----+----+----|
-                         GUEI, LWR, SPC,    ENT,RAIS,ALKN \
+                         OPSP,LGUI,XXXX,   XXXX,RCMD, ENT \
                       //`--------------'  `--------------'
   )
 };
