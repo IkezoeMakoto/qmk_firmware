@@ -100,9 +100,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,------------------------------.           ,-----------------------------.
       ESC,   1,   2,   3,   4,   5,                6,   7,   8,   9,   0,MINS,\
   //|----+----+----+----+----+----|            |----+----+----+----+----+----|
-      TAB,XXXX,XXXX,XXXX,XXXX,XXXX,             XXXX,XXXX,XXXX,LBRC,RBRC, EQL,\
+      TAB,XXXX,XXXX,XXXX,XXXX,XXXX,              GRV,XXXX,XXXX,LBRC,RBRC, EQL,\
   //|----+----+----+----+----+----|            |----+----+----+----+----+----|
-     LCTL,LSFT,XXXX,XXXX,XXXX,LSFT,             RSFT,XXXX,XXXX,XXXX,XXXX,BSLS,\
+     LCTL,LSFT,XXXX,XXXX,XXXX,LSFT,             RSFT,XXXX,XXXX,XXXX,BSLS,RSFT,\
   //|----+----+----+----+----+----+----|  |----+----+----+----+----+----+----|
                          OPSP,LGUI, LWR,    LSL,RCMD, ENT \
                       //`--------------'  `--------------'
